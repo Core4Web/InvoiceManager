@@ -8,13 +8,16 @@ namespace InvoiceManager.Data.Repositories
 {
     public class InvoiceRepository : IInvoiceRepository
     {
-        private List<Invoice> data = new List<Invoice>();
+        private DataContext _context;
 
-        public IEnumerable<Invoice> Invoices => data;
+        public InvoiceRepository(DataContext dataContext) => _context = dataContext;
+
+        public IEnumerable<Invoice> Invoices => _context.Invoices;
 
         public void AddInvoice(Invoice invoice)
         {
-            data.Add(invoice);
+            _context.Invoices.Add(invoice);
+            _context.SaveChanges();
         }
     }
 }
