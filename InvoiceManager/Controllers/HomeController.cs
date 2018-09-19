@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using InvoiceManager.Data.Repositories;
+using InvoiceManager.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InvoiceManager.Controllers
@@ -15,5 +16,14 @@ namespace InvoiceManager.Controllers
             _invoiceRepo = invoiceRepo;
         }
         public IActionResult Index() => View(_invoiceRepo.Invoices);
+
+        public IActionResult AddInvoice() => View();
+
+        [HttpPost]
+        public IActionResult AddInvoice(Invoice model)
+        {
+            _invoiceRepo.AddInvoice(model);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

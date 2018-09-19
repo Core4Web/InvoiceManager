@@ -1,0 +1,21 @@
+﻿@model Invoice
+
+<h3 class="p-2 bg-primary text-white text-center">Добавить счет</h3>
+<form asp-action="AddInvoice" method="post">
+    <div class="form-group">
+        <label asp-for="Number"></label>
+        <input asp-for="Number" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Note"></label>
+        <input asp-for="Note" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Sum"></label>
+        <input asp-for="Sum" class="form-control" />
+    </div>
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary">Добавить</button>
+        <a asp-action="Index" class="btn btn-secondary">Отмена</a>
+    </div>
+</form>

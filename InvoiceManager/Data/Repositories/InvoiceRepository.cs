@@ -14,9 +14,17 @@ namespace InvoiceManager.Data.Repositories
 
         public IEnumerable<Invoice> Invoices => _context.Invoices;
 
+        public Invoice GetInvoice(int key) => _context.Invoices.Find(key);
+
         public void AddInvoice(Invoice invoice)
         {
             _context.Invoices.Add(invoice);
+            _context.SaveChanges();
+        }
+
+        public void UpdateInvoice(Invoice invoice)
+        {
+            _context.Invoices.Update(invoice);
             _context.SaveChanges();
         }
     }
