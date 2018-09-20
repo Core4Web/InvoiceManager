@@ -12,5 +12,7 @@ namespace InvoiceManager.Data.Repositories
         Invoice GetInvoice(int key);
         void AddInvoice(Invoice invoice);
         void UpdateInvoice(Invoice invoice);
+        void UpdateAll(Invoice[] invoices);
+        void DeleteInvoice(Invoice invoice);
     }
 }

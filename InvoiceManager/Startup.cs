@@ -21,7 +21,7 @@ namespace InvoiceManager
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DataContext>(options =>
+            services.AddDbContext<AppDBContext>(options =>
                 options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
             services.AddTransient<IInvoiceRepository, InvoiceRepository>();
             services.AddMvc();
@@ -33,6 +33,7 @@ namespace InvoiceManager
             app.UseStatusCodePages();
             app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
+            SeedData.EnsurePopulated(app);
         }
     }
 }

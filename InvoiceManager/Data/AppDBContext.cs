@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace InvoiceManager.Data
 {
-    public class DataContext: DbContext
+    public class AppDBContext: DbContext
     {
-        public DataContext(DbContextOptions<DataContext> opts): base(opts) { }
+        public AppDBContext(DbContextOptions<AppDBContext> opts): base(opts) { }
         public DbSet<Invoice> Invoices { get; set; }
     }
 }

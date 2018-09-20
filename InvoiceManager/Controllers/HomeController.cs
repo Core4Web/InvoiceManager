@@ -25,5 +25,19 @@ namespace InvoiceManager.Controllers
             _invoiceRepo.AddInvoice(model);
             return RedirectToAction(nameof(Index));
         }
+        public IActionResult UpdateInvoice(int key) => View(_invoiceRepo.GetInvoice(key));
+
+        [HttpPost]
+        public IActionResult UpdateInvoice(Invoice model)
+        {
+            _invoiceRepo.UpdateInvoice(model);
+            return RedirectToAction(nameof(Index));
+        }
+        [HttpPost]
+        public IActionResult DeleteInvoice(Invoice model)
+        {
+            _invoiceRepo.DeleteInvoice(model);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

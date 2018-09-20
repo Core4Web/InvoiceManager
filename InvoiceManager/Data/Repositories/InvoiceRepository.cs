@@ -8,11 +8,11 @@ namespace InvoiceManager.Data.Repositories
 {
     public class InvoiceRepository : IInvoiceRepository
     {
-        private DataContext _context;
+        private AppDBContext _context;
 
-        public InvoiceRepository(DataContext dataContext) => _context = dataContext;
+        public InvoiceRepository(AppDBContext dataContext) => _context = dataContext;
 
-        public IEnumerable<Invoice> Invoices => _context.Invoices;
+        public IEnumerable<Invoice> Invoices => _context.Invoices.ToArray();
 
         public Invoice GetInvoice(int key) => _context.Invoices.Find(key);
 
@@ -24,7 +24,32 @@ namespace InvoiceManager.Data.Repositories
 
         public void UpdateInvoice(Invoice invoice)
         {
-            _context.Invoices.Update(invoice);
+            var entity =GetInvoice(invoice.Id);
+            entity.Number = invoice.Number;
+            entity.Note = invoice.Note;
+            entity.Sum=invoice.Sum;
+            //_context.Invoices.Update(invoice);
+            _context.SaveChanges();
+        }
+
+        public void UpdateAll(Invoice[] invoices)
+        {
+            int[] keys = invoices.Select(x => x.Id).ToArray();
+            IEnumerable<Invoice> entities = _context.Invoices
+                .Where(x => keys.Contains(x.Id));
+            foreach (var entity in entities)
+            {
+                var invoice = invoices.Single(x => x.Id == entity.Id);
+                entity.Number = invoice.Number;
+                entity.Note = invoice.Note;
+                entity.Sum = invoice.Sum;
+            }
+            _context.SaveChanges();
+        }
+
+        public void DeleteInvoice(Invoice invoice)
+        {
+            _context.Invoices.Remove(invoice);
             _context.SaveChanges();
         }
     }

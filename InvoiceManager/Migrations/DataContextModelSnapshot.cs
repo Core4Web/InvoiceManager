@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace InvoiceManager.Migrations
 {
-    [DbContext(typeof(DataContext))]
+    [DbContext(typeof(AppDBContext))]
     partial class DataContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
