@@ -4,14 +4,16 @@ using InvoiceManager.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace InvoiceManager.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20180927064025_V1")]
+    partial class V1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,8 +29,6 @@ namespace InvoiceManager.Migrations
 
                     b.Property<DateTime>("Created");
 
-                    b.Property<int>("InvoiceAccountId");
-
                     b.Property<string>("Note");
 
                     b.Property<string>("Number");
@@ -38,8 +38,6 @@ namespace InvoiceManager.Migrations
                     b.Property<DateTime?>("Updated");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("InvoiceAccountId");
 
                     b.ToTable("Invoices");
                 });
@@ -57,14 +55,6 @@ namespace InvoiceManager.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("InvoiceAccounts");
-                });
-
-            modelBuilder.Entity("InvoiceManager.Models.Invoice", b =>
-                {
-                    b.HasOne("InvoiceManager.Models.InvoiceAccount", "InvoiceAccount")
-                        .WithMany()
-                        .HasForeignKey("InvoiceAccountId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

@@ -19,27 +19,25 @@
     {
         @foreach (var item in Model)
         {
-        <div class="row p-2">
-            <div class="col">@item.Id</div>
-            <div class="col">@item.Number</div>
-            <div class="col">@item.Sum</div>
-            <div class="col">@item.Note</div>
-            <div class="col">@item.Created</div>
-            <div class="col">
-                <form asp-action="DeleteInvoice" method="post">
-                    <a asp-action="UpdateInvoice" asp-route-key="@item.Id" class="btn btn-outline-primary">Изменить</a>
-                    <input type="hidden" name="Id" value="@item.Id" />
-                    <button type="submit" class="btn btn-outline-danger">
-                        Удалить
-                    </button>
-                </form>
+            <div class="row p-2">
+                <div class="col">@item.Id</div>
+                <div class="col">@item.Number</div>
+                <div class="col">@item.Sum</div>
+                <div class="col">@item.Note</div>
+                <div class="col">@item.Created</div>
+                <div class="col">
+                    <form asp-action="DeleteInvoice" method="post">
+                        <a asp-action="UpdateInvoice" asp-route-key="@item.Id" class="btn btn-outline-primary">Изменить</a>
+                        <input type="hidden" name="Id" value="@item.Id" />
+                        <button type="submit" class="btn btn-outline-danger">
+                            Удалить
+                        </button>
+                    </form>
+                </div>
             </div>
-        </div>
         }
     }
-    <div class="row p-2">
-        <div class="col">
-            <a asp-action="AddInvoice" class="btn btn-outline-info">Добавить</a>
-        </div>
+    <div class="text-center p-2">
+        <a asp-action="AddInvoice" class="btn btn-outline-info">Добавить</a>
     </div>
 </div>

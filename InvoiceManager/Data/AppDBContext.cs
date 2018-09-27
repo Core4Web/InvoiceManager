@@ -11,5 +11,6 @@ namespace InvoiceManager.Data
     {
         public AppDBContext(DbContextOptions<AppDBContext> opts): base(opts) { }
         public DbSet<Invoice> Invoices { get; set; }
+        public DbSet<InvoiceAccount> InvoiceAccounts { get; set; }
     }
 }

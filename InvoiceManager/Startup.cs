@@ -24,6 +24,7 @@ namespace InvoiceManager
             services.AddDbContext<AppDBContext>(options =>
                 options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
             services.AddTransient<IInvoiceRepository, InvoiceRepository>();
+            services.AddTransient<IInvoiceAccountRepository, InvoiceAccountRepository>();
             services.AddMvc();
         }
 
