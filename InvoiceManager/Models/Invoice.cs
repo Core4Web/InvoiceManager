@@ -7,6 +7,8 @@ namespace InvoiceManager.Models {
         public int InvoiceAccountId { get; set; }
         public InvoiceAccount InvoiceAccount { get; set; }
         public string Number { get; set; }
+        public int PeriodId { get; set; }
+        public Period Period { get; set; }
         public decimal Sum { get; set; }
         public string Note { get; set; }
         public DateTime Created { get; set; }

@@ -8,7 +8,7 @@ namespace InvoiceManager.Data.Repositories
 {
     public interface IInvoiceRepository
     {
-        IEnumerable<Invoice> Invoices { get; }
+        IEnumerable<Invoice> GetAllInvoices();
         Invoice GetInvoice(int key);
         void AddInvoice(Invoice invoice);
         void UpdateInvoice(Invoice invoice);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using InvoiceManager.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace InvoiceManager.Data.Repositories
 {
@@ -12,7 +13,13 @@ namespace InvoiceManager.Data.Repositories
 
         public InvoiceRepository(AppDBContext dataContext) => _context = dataContext;
 
-        public IEnumerable<Invoice> Invoices => _context.Invoices.ToArray();
+        public IEnumerable<Invoice> GetAllInvoices()
+        {
+            return _context.Invoices
+                .Include(x=>x.InvoiceAccount)
+                .Include(x=>x.Period)
+                .ToArray();
+        }
 
         public Invoice GetInvoice(int key) => _context.Invoices.Find(key);
 

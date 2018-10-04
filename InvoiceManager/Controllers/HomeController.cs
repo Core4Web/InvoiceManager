@@ -15,7 +15,10 @@ namespace InvoiceManager.Controllers
         {
             _invoiceRepo = invoiceRepo;
         }
-        public IActionResult Index() => View(_invoiceRepo.Invoices);
+        public IActionResult Index()
+        {
+            return View(_invoiceRepo.GetAllInvoices());
+        }
 
         public IActionResult AddInvoice() => View();
 
