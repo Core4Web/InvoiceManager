@@ -260,3 +260,5 @@ paket-files/
 __pycache__/
 *.pyc
 /InvoiceManager/wwwroot/lib/bootstrap
+/InvoiceManager/wwwroot/lib/font-awsome
+/InvoiceManager/wwwroot/lib/jquery

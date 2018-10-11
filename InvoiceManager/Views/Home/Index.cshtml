@@ -1,43 +1,64 @@
 ﻿@model IEnumerable<Invoice>
-<h3 class="p-2 bg-primary text-white text-center">Счета</h3>
-<div class="container-fluid mt-3">
-    @if (Model.Count() == 0)
-    {
-        <div class="alert alert-success" role="alert">
-            <strong>Счетов нет!</strong>
+
+<div class="container-fluid">
+    <div class="page-heading mt-3 mb-3">
+    <div class="row">
+        <div class="col-10">
+            <h4>Список счетов</h4>
         </div>
-    }
-    else
-    {
-        <div class="row">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Наименование</th>
-                        <th>Номер счета</th>
-                        <th>Период</th>
-                        <th>Начислено</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>@item.Id</td>
-                            <td>@item.InvoiceAccount.Name</td>
-                            <td>@item.Number</td>
-                            <td>@item.Period.Name</td>
-                            <td>@item.Sum</td>
-                            <td></td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+        <div class="col-2">
+            <div class="float-right">
+                <a asp-action="AddInvoice" class="btn btn-outline-primary">Добавить</a>
+            </div>
         </div>
-    }
-    <div class="text-center p-2">
-        <a asp-action="AddInvoice" class="btn btn-outline-info">Добавить</a>
+    </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            @if (Model.Count() == 0)
+            {
+                <div class="alert alert-success" role="alert">
+                    <strong>Счетов нет!</strong>
+                </div>
+            }
+            else
+            {
+                <div class="card">
+                    <div class="card-header">
+                        <div class="align-content-center">
+                            <h4>Список счетов</h4>
+                            <a asp-action="AddInvoice" class="btn btn-outline-primary float-right">Добавить</a>
+                        </div>
+                    </div>
+                    <div class="card card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Наименование</th>
+                                    <th>Номер счета</th>
+                                    <th>Период</th>
+                                    <th>Начислено</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.Id</td>
+                                        <td>@item.InvoiceAccount.Name</td>
+                                        <td>@item.Number</td>
+                                        <td>@item.Period.Name</td>
+                                        <td>@item.Sum</td>
+                                        <td></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            }
+        </div>
     </div>
 </div>
